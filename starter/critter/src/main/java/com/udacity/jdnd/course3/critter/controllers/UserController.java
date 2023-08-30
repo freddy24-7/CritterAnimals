@@ -1,7 +1,15 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.controllers;
 
-import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.pet.PetService;
+import com.udacity.jdnd.course3.critter.dtos.CustomerDTO;
+import com.udacity.jdnd.course3.critter.dtos.EmployeeDTO;
+import com.udacity.jdnd.course3.critter.dtos.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.entities.Customer;
+import com.udacity.jdnd.course3.critter.entities.Employee;
+import com.udacity.jdnd.course3.critter.entities.Pet;
+import com.udacity.jdnd.course3.critter.service.CustomerService;
+import com.udacity.jdnd.course3.critter.service.EmployeeService;
+import com.udacity.jdnd.course3.critter.service.PetService;
+import com.udacity.jdnd.course3.critter.utils.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;

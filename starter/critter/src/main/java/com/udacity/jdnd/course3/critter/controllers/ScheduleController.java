@@ -1,7 +1,10 @@
-package com.udacity.jdnd.course3.critter.schedule;
+package com.udacity.jdnd.course3.critter.controllers;
 
-import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.user.Employee;
+import com.udacity.jdnd.course3.critter.entities.Pet;
+import com.udacity.jdnd.course3.critter.entities.Schedule;
+import com.udacity.jdnd.course3.critter.dtos.ScheduleDTO;
+import com.udacity.jdnd.course3.critter.service.ScheduleService;
+import com.udacity.jdnd.course3.critter.entities.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;

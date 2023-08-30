@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.dtos;
 
 import java.time.DayOfWeek;
 import java.util.Set;
@@ -7,6 +7,7 @@ import java.util.Set;
  * Represents the form that employee request and response data takes. Does not map
  * to the database directly.
  */
+import com.udacity.jdnd.course3.critter.utils.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

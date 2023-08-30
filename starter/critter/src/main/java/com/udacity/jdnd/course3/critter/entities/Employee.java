@@ -1,9 +1,10 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.entities;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.util.Set;
 
+import com.udacity.jdnd.course3.critter.utils.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

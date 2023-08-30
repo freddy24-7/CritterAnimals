@@ -1,11 +1,13 @@
-package com.udacity.jdnd.course3.critter.schedule;
+package com.udacity.jdnd.course3.critter.service;
 
-import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.pet.PetRepository;
-import com.udacity.jdnd.course3.critter.user.Customer;
-import com.udacity.jdnd.course3.critter.user.CustomerRepository;
-import com.udacity.jdnd.course3.critter.user.Employee;
-import com.udacity.jdnd.course3.critter.user.EmployeeRepository;
+import com.udacity.jdnd.course3.critter.entities.Pet;
+import com.udacity.jdnd.course3.critter.entities.Schedule;
+import com.udacity.jdnd.course3.critter.repositories.PetRepository;
+import com.udacity.jdnd.course3.critter.entities.Customer;
+import com.udacity.jdnd.course3.critter.repositories.ScheduleRepository;
+import com.udacity.jdnd.course3.critter.repositories.CustomerRepository;
+import com.udacity.jdnd.course3.critter.entities.Employee;
+import com.udacity.jdnd.course3.critter.repositories.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

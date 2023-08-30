@@ -1,5 +1,8 @@
-package com.udacity.jdnd.course3.critter.user;
+package com.udacity.jdnd.course3.critter.service;
 
+import com.udacity.jdnd.course3.critter.entities.Employee;
+import com.udacity.jdnd.course3.critter.repositories.EmployeeRepository;
+import com.udacity.jdnd.course3.critter.utils.EmployeeSkill;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
