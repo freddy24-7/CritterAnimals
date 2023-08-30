@@ -1,15 +1,13 @@
 package com.udacity.jdnd.course3.critter.user;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
-import com.udacity.jdnd.course3.critter.pet.PetController;
-import com.udacity.jdnd.course3.critter.pet.PetDTO;
+import com.udacity.jdnd.course3.critter.pet.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,10 +22,8 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final EmployeeService employeeService;
-
     private final CustomerService customerService;
-
-    private final PetController petController;
+    private final PetService petService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
@@ -46,14 +42,13 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId) {
-        Customer customer = customerService.getCustomerById(petId);
-        CustomerDTO customerDTO = convertCustomerToDTO(customer);
-        //Fetching the PetDTO by petId
-        PetDTO petDTO = petController.getPetById(petId);
-        if (petDTO.getCustomerId() != 0 && !customerDTO.getPetIds().contains(petId)) {
-            customerDTO.getPetIds().add(petId);
+        Pet pet = petService.findPetById(petId);
+        if (pet != null && pet.getCustomer().getId() != null) {
+            Customer customer = pet.getCustomer();
+            return convertCustomerToDTO(customer);
+        } else {
+            return null;
         }
-        return customerDTO;
     }
 
     @PostMapping("/employee")
@@ -72,23 +67,20 @@ public class UserController {
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        employeeService.setAvailability(daysAvailable, employeeId);
     }
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Set<EmployeeSkill> skills = employeeDTO.getSkills();
+        List<Employee> matchingEmployees = employeeService.findScheduleEmployees(skills);
+        return matchingEmployees.stream().map(this::convertEmployeeToDTO).collect(Collectors.toList());
     }
 
     private CustomerDTO convertCustomerToDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customer, customerDTO);
-        List<Pet> petsOfCustomer =  customer.getPets();
-        List<Long> customerDTOPetIds = new ArrayList<>();
-        for(Pet pet : petsOfCustomer) {
-            customerDTOPetIds.add(pet.getId());
-        }
-        customerDTO.setPetIds(customerDTOPetIds);
+        customerDTO.setPetIds(customer.getPets().stream().map(Pet::getId).collect(Collectors.toList()));
         return customerDTO;
     }
 
@@ -97,4 +89,5 @@ public class UserController {
         BeanUtils.copyProperties(employee, employeeDTO);
         return employeeDTO;
     }
+
 }

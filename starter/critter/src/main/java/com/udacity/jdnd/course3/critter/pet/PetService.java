@@ -20,16 +20,12 @@ public class PetService {
     public Pet addPet(Pet pet, Long customerId) {
         //Getting customer object
         Customer petOwner = getCustomerById(customerId);
-
         //Allocating owner to pet
         pet.setCustomer(petOwner);
-
         //Saving the pet
         Pet addedPet = petRepository.save(pet);
-
         //Adding pet to owners list of pets
         petOwner.getPets().add(addedPet);
-
         //Updating customer/owner data
         customerRepository.save(petOwner);
         return addedPet;
@@ -45,7 +41,7 @@ public class PetService {
 
     public List<Pet> getPetsByCustomer(long customerId) {
         Customer customer = getCustomerById(customerId);
-        return petRepository.findByCustomer(customer);
+        return petRepository.findPetByCustomer(customer);
     }
 
     private Customer getCustomerById(long customerId) {

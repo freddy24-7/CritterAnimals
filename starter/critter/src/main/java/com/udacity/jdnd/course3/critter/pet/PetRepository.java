@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long> {
-    List<Pet> findByCustomer(Customer customer);
+    List<Pet> findPetByCustomer(Customer customer);
 
 }

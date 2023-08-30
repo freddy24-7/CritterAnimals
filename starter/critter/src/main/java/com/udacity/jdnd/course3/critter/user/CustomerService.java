@@ -21,8 +21,4 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer getCustomerById(long customerId) {
-        return customerRepository.findById(customerId).orElse(null);
-    }
-
 }
