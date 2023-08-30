@@ -1,26 +1,28 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import com.udacity.jdnd.course3.critter.user.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-/**
- * Represents the form that pet request and response data takes. Does not map
- * to the database directly.
- */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PetDTO {
-    private long id;
+@Entity
+public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private PetType type;
     private String name;
-    private long customerId;
     private LocalDate birthDate;
     private String notes;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    private Customer customer;
 
 }
